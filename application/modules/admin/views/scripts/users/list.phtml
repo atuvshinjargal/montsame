@@ -1,0 +1,40 @@
+<div class="bs-docs-example">
+<?php echo $this->search;?>
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Username</th>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Email</th>
+    <th>Date</th>
+    <th>Control</th>
+  </tr>
+<?php 
+foreach ($this->data as $user){
+	echo '<tr>';
+	echo '<td><a href="'. $this->url(array('module'=>'admin',
+											'controller'=>'users',
+											'action'=>'pay',
+											'id'=>$user['user_id'])).'">'.$user['username'].'</a></td>';
+	echo '<td>'.$user['firstname'].'</td>';
+	echo '<td>'.$user['lastname'].'</td>';
+	echo '<td>'.$user['email'].'</td>';
+	echo '<td>'.$user['date'].'</td>';
+	echo '<td><a href="'.$this->url(array('module'=>'admin',
+											'controller'=>'users',
+											'action'=>'edit',
+											'id'=>$user['user_id'])).'"><i title="edit" class="icon-edit"></i>
+				</a><a href="javascript:click(\''.$this->url(array('module'=>'admin',
+											'controller'=>'users',
+											'action'=>'delete',
+											'id'=>$user['user_id'])).'\')"><i title="delete" class="icon-remove-sign"></i></a></td>';
+	echo '</tr>';
+}
+?>
+</table>
+<div class="pagination">
+<?php 
+	echo $this->paginationControl($this->data,'Sliding','pagination.phtml'); 
+?>
+</div>
+</div>

@@ -1,0 +1,35 @@
+<div class="bs-docs-example">
+<h2>All transactions list</h2>
+<?php echo $this->search;?>
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Recievere Email</th>
+    <th>Email</th>
+    <th>Country</th>
+    <th>Time</th>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Amount</th>
+    <th>Currency code</th>
+  </tr>
+<?php 
+foreach ($this->data as $user){
+	echo '<tr>';
+	echo '<td>'.$user['RECEIVEREMAIL'].'</td>';
+	echo '<td>'.$user['EMAIL'].'</td>';
+	echo '<td>'.$user['SHIPTOCOUNTRYNAME'].'</td>';
+	echo '<td>'.$user['TIMESTAMP'].'</td>';
+	echo '<td>'.$user['FIRSTNAME'].'</td>';
+	echo '<td>'.$user['LASTNAME'].'</td>';
+	echo '<td>'.$user['AMT'].'</td>';
+	echo '<td>'.$user['CURRENCYCODE'].'</td>';
+	echo '</tr>';
+}
+?>
+</table>
+<div class="pagination">
+<?php 
+	echo $this->paginationControl($this->data,'Sliding','pagination.phtml'); 
+?>
+</div>
+</div>

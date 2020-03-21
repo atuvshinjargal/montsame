@@ -1,0 +1,30 @@
+<div class="bs-docs-example">
+<a class="btn" href="<?php echo $this->url(array('module'=>'admin',
+											'controller'=>'users',
+											'action'=>'list')); ?>">Back</a> 
+								
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Payment</th>
+    <th>Pay Date</th>
+    <th>Category</th>
+    <th>Finish Date</th>
+  </tr>
+<?php 
+foreach ($this->pays as $pay){
+	echo '<tr>';
+	echo '<td>'.$pay['pay'].'</td>';
+	echo '<td>'.$pay['paydate'].'</td>';
+	echo '<td>'.$pay['name'].'</td>';
+	echo '<td>'.$pay['finisdate'].'</td>';
+	echo '</tr>';
+}
+?>
+</table>
+<div class="pagination">
+<?php 
+	echo $this->paginationControl($this->pays,'Sliding','pagination.phtml'); 
+?>
+</div>
+</div>
+

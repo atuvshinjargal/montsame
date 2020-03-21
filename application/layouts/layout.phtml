@@ -1,0 +1,41 @@
+<?php echo $this->doctype(); ?>
+<html lang="<?php echo $this->language; ?>">
+<head>
+<?php echo $this->headMeta(); ?>
+<?php echo $this->headTitle(); ?>
+<?php $this->headScript()->appendFile($this->baseUrl().'/js/bootstrap.min.js'); ?>
+<?php echo $this->headScript()->appendFile($this->baseUrl().'/js/my.js'); ?>
+<?php  $this->headLink()->prependStylesheet($this->baseUrl().'/css/style.css');?>
+<?php  $this->headLink()->prependStylesheet($this->baseUrl().'/css/bootstrap.min.css');?>
+<?php  echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/bootstrap-responsive.min.css');?>
+<?php 
+//if ($this->JQuery()->isEnabled()){
+//		$this->JQuery()->setLocalpath($this->baseUrl().'/js/jquery/js/jquery-1.3.2.min.js')
+//			->setUiLocalpath($this->baseUrl().'/js/jquery/js/jquery-ui-1.7.2.custom.min.js')
+//			->addStylesheet($this->baseUrl().'/js/jquery/css/smoothness/jquery-ui-1.7.2.custom.css');
+//			echo $this->JQuery();
+//}
+?>
+</head>
+<body>
+<?php //echo $this->title; ?>
+<div class="container-fluid" id="container-fluid">
+<a href="<?php echo $this->baseUrl(); ?>">
+<img title="montsame" src="<?php echo $this->baseUrl().'/img/'.$this->language?>.png">
+</a>
+<div class="lang btn-group">
+<?php foreach ($this->categorys as $category) {?>
+<a class="btn btn-small <?php if ($this->lang==$category['alies']) echo 'btn-primary active';?>" href="<?php echo $this->url(array('module'=>'library',
+											'controller'=>'Languageswitch',
+											'action'=>'switch',
+											'lang'=>$category['alies']));?>"><?php echo $category['name'] ?></a> 
+<?php }?>															
+</div>
+
+<div class="menu-main-container">
+<?php echo $this->navigation()->menu()->setUlClass('nav nav-tabs'); ?>
+</div>
+<?php echo $this->layout()->content; ?>
+</div>
+</body>
+</html>

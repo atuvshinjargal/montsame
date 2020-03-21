@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<nav>
+		<books>
+			<label>Newspapers</label>
+			<module>library</module>
+			<controller>books</controller>
+			<action>list</action>
+			<resource>library:books</resource>
+			<privilege>list</privilege>
+		</books>
+		<pay>
+			<label>Pay Request</label>
+			<module>default</module>
+			<controller>index</controller>
+			<action>pay</action>
+			<resource>default:index</resource>
+			<privilege>pay</privilege>
+		</pay>
+		<mypay>
+			<label>My payments</label>
+			<module>default</module>
+			<controller>index</controller>
+			<action>mypay</action>
+			<resource>default:index</resource>
+			<privilege>mypay</privilege>
+		</mypay>
+		<register>
+			<label>Create new account</label>
+			<module>default</module>
+			<controller>autentication</controller>
+			<action>signup</action>
+			<resource>default:autentication</resource>
+			<privilege>signup</privilege>
+		</register>
+		<book>
+		<label>Newspaper add</label>
+		<module>admin</module>
+		<controller>book</controller>
+		<action>add</action>
+		<resource>admin:book</resource>
+		<privilege>add</privilege>
+		</book>
+		<users>
+		<label>Users</label>
+		<module>admin</module>
+		<controller>users</controller>
+		<action>list</action>
+		<resource>admin:users</resource>
+		<privilege>list</privilege>
+		</users>
+		<trans>
+		<label>Transactions</label>
+		<module>admin</module>
+		<controller>users</controller>
+		<action>payment</action>
+		<resource>admin:users</resource>
+		<privilege>payment</privilege>
+		</trans>
+		<statistics>
+		<label>statistics</label>
+		<module>admin</module>
+		<controller>users</controller>
+		<action>statistics</action>
+		<resource>admin:users</resource>
+		<privilege>statistics</privilege>
+		</statistics>
+		<logout>
+			<label>Logout</label>
+			<module>default</module>
+			<controller>autentication</controller>
+			<action>logout</action>
+			<resource>default:autentication</resource>
+			<privilege>logout</privilege>
+		</logout>
+		<login>
+			<label>Login</label>
+			<module>default</module>
+			<controller>autentication</controller>
+			<action>login</action>
+			<resource>default:autentication</resource>
+			<privilege>login</privilege>
+		</login>
+	</nav>
+</config>

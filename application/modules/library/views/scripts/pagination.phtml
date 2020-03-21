@@ -1,0 +1,22 @@
+<?php
+echo $this->ajaxLink('begin',
+					$this->url(array('page'=>$this->first)),
+					array('id'=>'begin','complete'=>'Displaybooks(data);','method'=>'post'),
+					array('format'=>'json'));
+
+?>
+
+<a href="#" id="previous" page="<?php echo $this->previous; ?>">&lt</a>
+
+<?php
+foreach ($this->pagesInRange as $page){
+	echo '<a href="#" id="page" page="'.$page.'">'.$page.'</a>';
+}
+?>
+<a href="#" id="next" page="<?php echo $this->next; ?>">&gt</a>
+<?php
+	echo $this->ajaxLink('end',
+					$this->url(array('page'=>$this->last)),
+					array('id'=>'end','complete'=>'Displaybooks(data);','method'=>'post'),
+					array('format'=>'json'));
+echo 'Page <div id="currentpage" style="display:inline;">'.$this->current.'</div> Number of '.$this->pageCount;

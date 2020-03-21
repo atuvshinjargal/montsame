@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+
+
+
+<head>
+
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<?php $this->headScript()->appendFile($this->baseUrl().'/js/jquery1.8.3.js'); ?>
+<?php $this->headScript()->appendFile($this->baseUrl().'/js/jquery-ui.min.js'); ?>
+<?php //$this->headScript()->appendFile($this->baseUrl().'/js/jquery-ui.min.js'); ?>
+<?php //$this->headScript()->appendFile($this->baseUrl().'/js/book.js'); ?>
+<?php //$this->headScript()->appendFile($this->baseUrl().'/js/book3d.js'); ?>
+<?php //$this->headScript()->appendFile($this->baseUrl().'/js/page.js'); ?>
+<?php //$this->headScript()->appendFile($this->baseUrl().'/js/page3d.js'); ?>
+<?php //$this->headScript()->appendFile($this->baseUrl().'/js/thumb.js'); ?>
+<?php echo $this->headScript()->appendFile($this->baseUrl().'/js/flipbook.min.js'); ?>
+<?php //$this->headScript()->appendFile($this->baseUrl().'/js/THREEx.FullScreen.js'); ?>
+<?php //$this->headScript()->appendFile($this->baseUrl().'/js/THREEx.WindowResize.js'); ?>
+<?php //$this->headScript()->appendFile($this->baseUrl().'/js/IScroll4Custom.js'); ?>
+<script type="text/javascript">
+
+
+
+        $(document).ready(function () {
+
+            $("#container").flipBook({
+
+                css:"<?php echo $this->baseUrl().'/css/black.css'; ?>",
+
+                pages:[
+
+						<?php $images=explode(',',$this->book['text'],-1);
+							$i=1;
+						foreach ($images as $image){
+						?>
+						{src:"<?php echo $this->baseUrl().'/data/'.$image; ?>", thumb:"<?php echo $this->baseUrl().'/data/tumb/'.$image; ?>", title:"Page <?php echo $i?>"},
+						<?php $i++; }?>
+
+                ]
+
+            });
+
+        })
+
+    </script>
+</head>
+
+
+
+<body>
+
+<div id="container"></div>
+
+    <FORM><INPUT style="position:fixed; left:10px; top:10px;" type=button value=" Back " onClick="history.back();"></FORM> 
+</body>
+
+
+
+</html>

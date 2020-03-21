@@ -1,0 +1,13 @@
+<div class="bs-docs-example">
+<h2 align="center">Products</h2>
+<div class="product_wrapper">
+<table class="procut_item" border="0" cellpadding="4">
+    <?php 
+    foreach ($this->form as $form){
+    	echo '<tr><td><h4>'.$form['name'].'</h4>'.$form['description'].'</td><td>';
+    	echo $form['form'].'</td></tr>';	
+    }
+    ?>
+</table>
+</div>
+</div>

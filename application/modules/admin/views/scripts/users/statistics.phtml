@@ -1,0 +1,98 @@
+<?php $this->headScript()->appendFile($this->baseUrl().'/js/jquery.min.js'); ?>
+<?php //$this->headScript()->appendFile($this->baseUrl().'/js/excanvas.min.js'); ?>
+<?php $this->headScript()->appendFile($this->baseUrl().'/js/jquery.jqplot.min.js'); ?>
+<?php $this->headScript()->appendFile($this->baseUrl().'/js/plugins/jqplot.pieRenderer.min.js'); ?>
+<?php $this->headScript()->appendFile($this->baseUrl().'/js/plugins/jqplot.cursor.min.js'); ?>
+<?php $this->headScript()->appendFile($this->baseUrl().'/js/plugins/jqplot.dateAxisRenderer.min.js'); ?>
+<?php  $this->headLink()->prependStylesheet($this->baseUrl().'/css/jquery.jqplot.min.css');?>
+<script type="text/javascript">
+$(document).ready(function(){
+	 var line1=[<?php foreach ($this->gdatas as $gdata){
+	     	echo '["'.$gdata['TIMESTAMP'].'",'.$gdata['AMT'].'],';
+	   	}
+	   ?>];
+	  var plot1 = $.jqplot('chart1', [line1], { 
+	      title: 'Total profit of time', 
+	      series: [{ 
+	          label: '', 
+	          neighborThreshold: -1
+	      }], 
+	      axes: { 
+	          xaxis: { 
+	              renderer: $.jqplot.DateAxisRenderer,
+	              min:'May 1, 2013 16:00:00', 
+	              tickInterval: '1 months', 
+	              tickOptions:{formatString:'%Y/%#m/%#d'} 
+	          }, 
+	          yaxis: { 
+	              tickOptions:{formatString:'$%.2f'} 
+	          } 
+	      }, 
+	      cursor:{ 
+	        show: true,
+	        zoom:true, 
+	        showTooltip:false
+	      } 
+	  });
+	  $('#button-reset').click(function() { plot1.resetZoom()});
+	  var data = [<?php foreach ($this->revenueCategores as $revenueCategore){
+ 	echo '["'.$revenueCategore['name'].'",'.$revenueCategore['SUM(AMT)'].'],';
+	}
+?>];
+		      	  var plot2 = jQuery.jqplot ('chart2', [data], 
+		      	    { 
+			      	title: 'Categorys profit', 
+		      	      seriesDefaults: {
+		      	        // Make this a pie chart.
+		      	        renderer: jQuery.jqplot.PieRenderer, 
+		      	        rendererOptions: {
+		      	          // Put data labels on the pie slices.
+		      	          // By default, labels show the percentage of the slice.
+		      	          showDataLabels: true
+		      	        }
+		      	      }, 
+		      	      legend: { show:true, location: 'e' }
+		      	    });
+	});
+</script> 
+<div class="bs-docs-example">
+<div id="chart1" style="height:300px; width:800px;"></div> 
+<div id="button-reset" class="btn">Reset Zoom</div>
+<div id="chart2" style="height:360px; width:720px;"></div> 
+<table>
+<?php $i=0; foreach ($this->conts as $cont){?>
+<script type="text/javascript">
+$(document).ready(function(){
+	  var data = [<?php foreach ($cont[1] as $co){
+ 	echo '["'.$co['SHIPTOCOUNTRYNAME'].'",'.$co['count'].'],';
+	}
+?>];
+		      	  var plot2 = jQuery.jqplot ('cont<?php echo $i;?>', [data], 
+		      	    { 
+			      	title: '<?php echo $cont[0]; ?> countries rank', 
+		      	      seriesDefaults: {
+		      	        // Make this a pie chart.
+		      	        renderer: jQuery.jqplot.PieRenderer, 
+		      	        rendererOptions: {
+		      	          // Put data labels on the pie slices.
+		      	          // By default, labels show the percentage of the slice.
+		      	          showDataLabels: true
+		      	        }
+		      	      }, 
+		      	      legend: { show:true, location: 'e' }
+		      	    });
+	});
+</script> 
+<tr><td>
+<div id="cont<?php echo $i; $i++;?>" style="height:300px; width:600px;"></div>
+</td><td><ul style="margin-left: 100px;">
+<?php foreach ($cont[1] as $co){?>
+	<li><h4>
+	<?php echo $co['SHIPTOCOUNTRYNAME'].' - '.$co['count']; ?>
+	</h4></li>
+	<?php } ?>
+</ul>
+</td></tr>
+<?php }?> 
+</table>
+</div>

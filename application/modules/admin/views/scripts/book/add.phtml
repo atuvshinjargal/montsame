@@ -1,0 +1,39 @@
+<div class="span4">
+<?php 
+echo $this->error;
+echo $this->form;
+echo $this->errorMessage;
+?>
+</div>
+<div class="span8">
+<div class="bs-docs-example">
+<?php echo $this->search;?>
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Title</th>
+    <th>Date</th>
+    <th>Control</th>
+  </tr>
+<?php 
+foreach ($this->data as $user){
+	echo '<tr>';
+	echo '<td><a href="'. $this->url(array('module'=>'library',
+											'controller'=>'books',
+											'action'=>'view',
+											'item'=>$user['book_id'])).'">'.$user['title'].'</a></td>';
+	echo '<td>'.$user['date'].'</td>';
+	echo '<td><a href="javascript:click(\''. $this->url(array('module'=>'admin',
+											'controller'=>'book',
+											'action'=>'delete',
+											'id'=>$user['book_id'])).'\')"><i title="delete" class="icon-remove-sign"></i></a></td>';
+	echo '</tr>';
+}
+?>
+</table>
+<div class="pagination">
+<?php 
+	echo $this->paginationControl($this->data,'Sliding','pagination.phtml'); 
+?>
+</div>
+</div>
+</div>
